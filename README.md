@@ -12,7 +12,7 @@ npm run dev
 
 ## Contact form
 
-`POST /api/contact` inserts into `public.contact_submissions` in the `viral-cartel` Supabase project. RLS lets the anon/publishable key insert only; read submissions from the Supabase dashboard (Table Editor → contact_submissions).
+Messages are emailed to contact@viral-cartel.com via FormSubmit. A copy is also saved: `POST /api/contact` inserts into `public.contact_submissions` in the `viral-cartel` Supabase project. RLS lets the anon/publishable key insert only; read submissions from the Supabase dashboard (Table Editor → contact_submissions).
 
 ## Logo
 
