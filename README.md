@@ -16,4 +16,4 @@ npm run dev
 
 ## Logo
 
-`components/Crest.tsx` is a placeholder SVG. Replace it with the real crest artwork when available.
+`components/Logo.tsx` is the wordmark traced to SVG (`public/logo.svg` is the same file standalone).

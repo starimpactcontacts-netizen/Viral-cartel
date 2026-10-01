@@ -1,20 +1,26 @@
 import type { Metadata, Viewport } from 'next'
-import { Bebas_Neue, Inter, JetBrains_Mono } from 'next/font/google'
+import { EB_Garamond, Instrument_Serif } from 'next/font/google'
 import './globals.css'
 
-const display = Bebas_Neue({ weight: '400', subsets: ['latin'], variable: '--font-display' })
-const sans = Inter({ subsets: ['latin'], variable: '--font-sans' })
-const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono' })
+const display = Instrument_Serif({
+  weight: '400',
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+  variable: '--font-display',
+})
+const serif = EB_Garamond({ subsets: ['latin'], variable: '--font-serif' })
+
+const description =
+  'Viral Cartel makes films and music go viral on TikTok. 1B+ organic views. 2,000+ creators.'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://viral-cartel.com'),
-  title: 'Viral Cartel — Infrastructure for the Attention Economy',
-  description:
-    'Viral Cartel builds systems that turn cultural attention into scalable distribution for film & entertainment. Our flagship product, Loopgate, lets studios ignite competitive UGC at massive scale.',
+  title: 'Viral Cartel',
+  description,
+  icons: { icon: '/logo.svg' },
   openGraph: {
-    title: 'Viral Cartel — Infrastructure for the Attention Economy',
-    description:
-      'Systems that turn cultural attention into scalable distribution for film & entertainment.',
+    title: 'Viral Cartel',
+    description,
     url: 'https://viral-cartel.com',
     siteName: 'Viral Cartel',
     type: 'website',
@@ -22,12 +28,12 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0b0b0f',
+  themeColor: '#050505',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+    <html lang="en" className={`${display.variable} ${serif.variable}`}>
       <body>{children}</body>
     </html>
   )

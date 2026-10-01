@@ -29,53 +29,40 @@ export default function ContactForm() {
   }
 
   if (status === 'sent') {
-    return (
-      <div className="form-done">
-        <p className="eyebrow">Received</p>
-        <h3>We&rsquo;ll be in touch.</h3>
-        <p className="muted">Our team reviews every inquiry and replies within two business days.</p>
-      </div>
-    )
+    return <p className="form-done">Received. We&rsquo;ll be in touch.</p>
   }
 
   return (
     <form className="form" onSubmit={onSubmit} noValidate>
-      <div className="form-row">
-        <label>
-          <span>Name</span>
-          <input name="name" required autoComplete="name" maxLength={200} />
-        </label>
-        <label>
-          <span>Email</span>
-          <input name="email" type="email" required autoComplete="email" maxLength={320} />
-        </label>
-      </div>
-      <div className="form-row">
-        <label>
-          <span>Company</span>
-          <input name="company" autoComplete="organization" maxLength={200} />
-        </label>
-        <label>
-          <span>Interest</span>
-          <select name="interest" defaultValue="Loopgate">
-            <option>Loopgate</option>
-            <option>Partnership</option>
-            <option>Press</option>
-            <option>Other</option>
-          </select>
-        </label>
-      </div>
-      <label>
-        <span>Message</span>
-        <textarea name="message" required rows={5} maxLength={5000} placeholder="Tell us about your release, campaign or goals." />
-      </label>
+      <input name="name" placeholder="Name" aria-label="Name" required autoComplete="name" maxLength={200} />
+      <input
+        name="email"
+        type="email"
+        placeholder="you@studio.com"
+        aria-label="Email"
+        required
+        autoComplete="email"
+        maxLength={320}
+      />
+      <textarea
+        name="message"
+        placeholder="The film, the date, the goal."
+        aria-label="Message"
+        required
+        rows={4}
+        maxLength={5000}
+      />
       <label className="hp" aria-hidden="true">
         <span>Website</span>
         <input name="website" tabIndex={-1} autoComplete="off" />
       </label>
-      {error && <p className="form-error" role="alert">{error}</p>}
-      <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
-        {status === 'sending' ? 'Sending…' : 'Send inquiry'} <span aria-hidden>→</span>
+      {error && (
+        <p className="form-error" role="alert">
+          {error}
+        </p>
+      )}
+      <button className="btn" type="submit" disabled={status === 'sending'}>
+        {status === 'sending' ? 'Sending…' : 'Send'}
       </button>
     </form>
   )
