@@ -15,7 +15,7 @@ export default function Home() {
       </header>
 
       <main>
-        <section className="hero">
+        <section className="hero" data-lens>
           <h1 className="fade">
             <Logo className="logo" />
           </h1>
@@ -27,7 +27,7 @@ export default function Home() {
 
         <Thread className="thread-tall" />
 
-        <section className="block">
+        <section className="block" data-lens>
           <p className="caps label">As seen on</p>
           <div className="press-logos">
             <a
@@ -50,7 +50,7 @@ export default function Home() {
 
         <Thread />
 
-        <section className="block">
+        <section className="block" data-lens>
           <p className="caps label">What we do</p>
           <ul className="services">
             {services.map((s) => (
@@ -61,13 +61,13 @@ export default function Home() {
 
         <Thread />
 
-        <section className="block">
+        <section className="block" data-lens>
           <CaseStudies />
         </section>
 
         <Thread />
 
-        <section id="contact" className="block contact">
+        <section id="contact" className="block contact" data-lens>
           <p className="caps label">Contact</p>
           <h2 className="contact-title">Got a release?</h2>
           <ContactForm />
@@ -76,7 +76,7 @@ export default function Home() {
         <Thread />
       </main>
 
-      <footer className="foot">
+      <footer className="foot" data-lens>
         <Logo className="logo-sm" />
         <p>© {new Date().getFullYear()} Viral Cartel Inc.</p>
       </footer>

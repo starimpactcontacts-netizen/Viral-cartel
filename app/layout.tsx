@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { EB_Garamond, Instrument_Serif } from 'next/font/google'
+import ScrollLens from '@/components/ScrollLens'
 import './globals.css'
 
 const display = Instrument_Serif({
@@ -37,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <div className="bg-map" aria-hidden />
         {children}
+        <ScrollLens />
       </body>
     </html>
   )

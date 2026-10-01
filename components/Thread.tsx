@@ -24,7 +24,7 @@ export default function Thread({ className = '' }: { className?: string }) {
   }, [])
 
   return (
-    <div ref={ref} className={`thread ${on ? 'on' : ''} ${className}`} aria-hidden>
+    <div ref={ref} className={`thread ${on ? 'on' : ''} ${className}`} aria-hidden data-lens>
       <span />
       <span />
     </div>
