@@ -1,7 +1,10 @@
 import Image from 'next/image'
 import Logo from '@/components/Logo'
 import ContactForm from '@/components/ContactForm'
-import Services from '@/components/Services'
+import CaseStudies from '@/components/CaseStudies'
+import Thread from '@/components/Thread'
+
+const services = ['Short-form edits', 'Fan-driven campaigns']
 
 export default function Home() {
   return (
@@ -22,6 +25,8 @@ export default function Home() {
           </a>
         </section>
 
+        <Thread className="thread-tall" />
+
         <section className="block">
           <p className="caps label">As seen on</p>
           <div className="press-logos">
@@ -33,20 +38,42 @@ export default function Home() {
             >
               <Image src="/press-bi.png" alt="Business Insider" width={465} height={160} className="press-bi" />
             </a>
-            <Image src="/press-clio.png" alt="The Clio Awards 2025 Shortlist" width={574} height={355} className="press-clio" />
+            <Image
+              src="/press-clio.png"
+              alt="The Clio Awards 2025 Shortlist"
+              width={574}
+              height={355}
+              className="press-clio"
+            />
           </div>
         </section>
 
+        <Thread />
+
         <section className="block">
-          <p className="caps label">Case studies</p>
-          <Services />
+          <p className="caps label">What we do</p>
+          <ul className="services">
+            {services.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ul>
         </section>
+
+        <Thread />
+
+        <section className="block">
+          <CaseStudies />
+        </section>
+
+        <Thread />
 
         <section id="contact" className="block contact">
           <p className="caps label">Contact</p>
           <h2 className="contact-title">Got a release?</h2>
           <ContactForm />
         </section>
+
+        <Thread />
       </main>
 
       <footer className="foot">
