@@ -34,7 +34,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${display.variable} ${serif.variable}`}>
-      <body>{children}</body>
+      <body>
+        <div className="bg-map" aria-hidden />
+        {children}
+      </body>
     </html>
   )
 }
