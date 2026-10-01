@@ -1,22 +1,13 @@
+import Image from 'next/image'
 import Logo from '@/components/Logo'
 import ContactForm from '@/components/ContactForm'
-
-const stats = [
-  { value: '1B+', label: 'organic views' },
-  { value: '2,000+', label: 'creators' },
-  { value: '68.9M', label: 'views on one edit' },
-]
-
-const work = [
-  { title: 'Sonic the Hedgehog 3', note: '68.9M views · Clio Entertainment shortlist' },
-  { title: 'F1', note: 'campaign' },
-]
+import Services from '@/components/Services'
 
 export default function Home() {
   return (
     <>
       <header className="top">
-        <span>Est. 2024 · Dubai</span>
+        <span>Est. 2024 · Stockholm</span>
         <a href="#contact">Contact</a>
       </header>
 
@@ -31,45 +22,24 @@ export default function Home() {
           </a>
         </section>
 
-        <section className="stats" aria-label="Numbers">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <p className="stat">{s.value}</p>
-              <p className="caps">{s.label}</p>
-            </div>
-          ))}
-        </section>
-
         <section className="block">
-          <p className="caps label">Selected work</p>
-          <ul className="work">
-            {work.map((w) => (
-              <li key={w.title}>
-                <span className="work-title">{w.title}</span>
-                <em>{w.note}</em>
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="block">
-          <p className="caps label">As seen in</p>
-          <a
-            className="press"
-            href="https://www.yahoo.com/entertainment/movies/articles/why-hollywood-paying-17-old-102101659.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span className="caps press-name">Business Insider</span>
-            <span className="press-quote">
-              &ldquo;Why Hollywood is paying this 17-year-old up to $20,000 to boost film trailers with TikTok
-              edits&rdquo;
-            </span>
-          </a>
-          <div className="press">
-            <span className="caps press-name">Clio Entertainment Awards</span>
-            <span className="press-quote">Shortlisted</span>
+          <p className="caps label">As seen on</p>
+          <div className="press-logos">
+            <a
+              href="https://www.yahoo.com/entertainment/movies/articles/why-hollywood-paying-17-old-102101659.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Business Insider"
+            >
+              <Image src="/press-bi.png" alt="Business Insider" width={465} height={160} className="press-bi" />
+            </a>
+            <Image src="/press-clio.png" alt="The Clio Awards 2025 Shortlist" width={574} height={355} className="press-clio" />
           </div>
+        </section>
+
+        <section className="block">
+          <p className="caps label">Case studies</p>
+          <Services />
         </section>
 
         <section id="contact" className="block contact">
