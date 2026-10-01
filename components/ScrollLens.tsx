@@ -10,7 +10,6 @@ export default function ScrollLens() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const els = Array.from(document.querySelectorAll<HTMLElement>('[data-lens]'))
-    const map = document.querySelector<HTMLElement>('.bg-map')
     let lastY = window.scrollY
     let velocity = 0
     let raf = 0
@@ -37,11 +36,6 @@ export default function ScrollLens() {
         const fade = clamp(1 - 0.75 * Math.pow(Math.max(0, ad - 0.25), 1.3), 0.12, 1)
         el.style.transform = `perspective(1000px) translate3d(0, ${lag.toFixed(1)}px, 0) rotateX(${rot.toFixed(2)}deg) scale(${scale.toFixed(3)})`
         el.style.opacity = fade.toFixed(3)
-      }
-
-      if (map) {
-        const shift = clamp(-y * 0.04, -60, 60)
-        map.style.transform = `translate3d(0, ${shift.toFixed(1)}px, 0) scale(1.12)`
       }
 
       if (Math.abs(velocity) > 0.05) {
