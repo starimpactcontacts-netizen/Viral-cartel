@@ -4,6 +4,29 @@ import { useState } from 'react'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
+const INBOX = 'contact@viral-cartel.com'
+
+// Forwards the message to the inbox via FormSubmit (no API key needed).
+async function emailInbox(data: Record<string, FormDataEntryValue>) {
+  try {
+    const res = await fetch(`https://formsubmit.co/ajax/${INBOX}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        name: data.name,
+        email: data.email,
+        message: data.message,
+        _subject: `New inquiry from ${data.name} via viral-cartel.com`,
+        _template: 'table',
+        _captcha: 'false',
+      }),
+    })
+    return res.ok
+  } catch {
+    return false
+  }
+}
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>('idle')
   const [error, setError] = useState('')
@@ -14,13 +37,16 @@ export default function ContactForm() {
     setError('')
     const data = Object.fromEntries(new FormData(e.currentTarget))
     try {
+      // Validates and saves a copy to Supabase.
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data),
       })
       const json = await res.json().catch(() => ({}))
-      if (!res.ok) throw new Error(json.error || 'Something went wrong. Try again.')
+      if (res.status === 400) throw new Error(json.error || 'Please check the form.')
+      const emailed = data.website ? true : await emailInbox(data)
+      if (!res.ok && !emailed) throw new Error(json.error || 'Something went wrong. Try again.')
       setStatus('sent')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Try again.')
